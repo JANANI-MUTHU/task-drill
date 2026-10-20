@@ -1,0 +1,551 @@
+/* ==========================================================================
+   Task-Drill — Soft & Pleasant Pastel Theme Stylesheet
+   ========================================================================== */
+
+/* 1. Design Tokens / Pastel Color Palette */
+:root {
+  /* Background Mesh Colors */
+  --bg-base: #f8fafc;
+  --bg-gradient: 
+    radial-gradient(at 10% 15%, #e0e7ff 0px, transparent 45%),
+    radial-gradient(at 90% 10%, #fae8ff 0px, transparent 40%),
+    radial-gradient(at 85% 85%, #ffe4e6 0px, transparent 45%),
+    radial-gradient(at 15% 85%, #ccfbf1 0px, transparent 40%),
+    #f8fafc;
+
+  /* Card Surfaces & Glassmorphism */
+  --surface-card: rgba(255, 255, 255, 0.88);
+  --surface-card-border: rgba(255, 255, 255, 0.95);
+  --surface-item: #ffffff;
+  --surface-item-hover: #fafafa;
+  --surface-item-border: #e8edf3;
+
+  /* Typography / Text Colors */
+  --text-main: #1e293b;         /* Deep slate for crisp readability */
+  --text-muted: #64748b;        /* Soft slate for secondary text */
+  --text-subtle: #94a3b8;       /* Subtle hints and placeholders */
+  --text-strike: #94a3b8;       /* Strike-through completed tasks */
+
+  /* Pastel Accent Colors */
+  --primary: #6366f1;           /* Gentle periwinkle/indigo */
+  --primary-hover: #4f46e5;
+  --primary-soft: #eef2ff;      /* Pastel lilac tint */
+  --primary-glow: rgba(99, 102, 241, 0.18);
+
+  --accent-pill: #f3e8ff;       /* Pastel lavender */
+  --accent-pill-text: #7c3aed;
+
+  --success: #059669;           /* Calming mint/sage */
+  --success-soft: #ecfdf5;
+  --success-glow: rgba(16, 185, 129, 0.2);
+
+  --danger: #e11d48;            /* Soft rose */
+  --danger-hover: #be123c;
+  --danger-soft: #fff1f2;
+  --danger-glow: rgba(225, 29, 72, 0.12);
+
+  /* Geometry & Shadows */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 14px rgba(100, 116, 139, 0.08);
+  --shadow-card: 0 20px 40px -15px rgba(99, 102, 241, 0.12), 0 8px 16px -6px rgba(0, 0, 0, 0.04);
+
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Global Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-base);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 36px 16px 56px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 3. Layout Wrapper */
+.app-wrapper {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* 4. App Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 6px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #818cf8, #c084fc);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(129, 140, 248, 0.35);
+  flex-shrink: 0;
+}
+
+.app-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #1e1b4b; /* Deep twilight slate */
+}
+
+.app-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.progress-pill {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e0e7ff;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #4338ca; /* Soft indigo */
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.08);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+/* 5. Main Card Container */
+.card {
+  background: var(--surface-card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1.5px solid var(--surface-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 6. Form & Input Group */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.task-input {
+  flex: 1;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 13px 18px;
+  color: var(--text-main);
+  font-size: 0.96rem;
+  font-family: inherit;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: var(--transition);
+}
+
+.task-input::placeholder {
+  color: var(--text-subtle);
+}
+
+.task-input:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3.5px var(--primary-glow);
+  background: #ffffff;
+}
+
+.form-error {
+  font-size: 0.82rem;
+  color: var(--danger);
+  min-height: 18px;
+  padding-left: 4px;
+  display: none;
+}
+
+.form-error.active {
+  display: block;
+}
+
+/* 7. Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1, #818cf8);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.28);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+  transform: translateY(-1.5px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.btn-text:hover {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+/* 8. Filter Tabs */
+.filter-tabs {
+  display: flex;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  border: 1px solid #e2e8f0;
+  gap: 4px;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: var(--transition);
+}
+
+.tab-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.tab-btn.active {
+  background: #ffffff;
+  color: #3730a3; /* Deep indigo */
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.badge {
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.tab-btn.active .badge {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+/* 9. Task List */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Custom scrollbar */
+.task-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.task-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: var(--radius-full);
+}
+
+/* 10. Single Task Item (Card Style) */
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface-item);
+  border: 1px solid var(--surface-item-border);
+  border-radius: var(--radius-md);
+  padding: 13px 16px;
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: var(--transition);
+  animation: slideIn 0.22s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-item:hover {
+  background: var(--surface-item-hover);
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.07);
+  transform: translateY(-1px);
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Custom Pastel Checkbox */
+.custom-checkbox {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.checkbox-mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  border: 2px solid #cbd5e1;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.checkbox-mark svg {
+  display: none;
+  color: #ffffff;
+}
+
+.custom-checkbox input:checked ~ .checkbox-mark {
+  background: linear-gradient(135deg, #10b981, #34d399); /* Pastel mint */
+  border-color: #10b981;
+  box-shadow: 0 2px 8px var(--success-glow);
+}
+
+.custom-checkbox input:checked ~ .checkbox-mark svg {
+  display: block;
+}
+
+.task-item:hover .checkbox-mark {
+  border-color: #818cf8;
+}
+
+/* Task Title Text */
+.task-text {
+  font-size: 0.96rem;
+  color: var(--text-main);
+  word-break: break-word;
+  transition: var(--transition);
+  font-weight: 450;
+}
+
+.task-item.completed {
+  background: #f8fafc;
+  border-color: #f1f5f9;
+  opacity: 0.72;
+}
+
+.task-item.completed .task-text {
+  color: var(--text-strike);
+  text-decoration: line-through;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  background: var(--danger-soft);
+  color: var(--danger);
+  transform: scale(1.08);
+}
+
+/* 11. Empty State */
+.empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 38px 16px;
+  color: var(--text-subtle);
+}
+
+.empty-state.visible {
+  display: flex;
+}
+
+.empty-icon {
+  margin-bottom: 12px;
+  color: #cbd5e1;
+}
+
+.empty-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.empty-desc {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+/* 12. App Footer */
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.site-credit {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+/* 13. Mobile Responsiveness */
+@media (max-width: 480px) {
+  body {
+    padding: 18px 12px 36px;
+  }
+
+  .card {
+    padding: 20px 15px;
+    gap: 16px;
+    border-radius: var(--radius-md);
+  }
+
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .progress-pill {
+    align-self: flex-start;
+  }
+
+  .btn span {
+    display: none; /* Icon-only on very small phones */
+  }
+
+  .btn {
+    padding: 12px 16px;
+  }
+}

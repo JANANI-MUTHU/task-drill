@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task-Drill — Stay Organized</title>
+  <meta name="description" content="A clean, personal to-do list web app to track daily tasks, stay organized, and get things done.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Header Section -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"></polyline>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="app-title">Task-Drill</h1>
+          <p class="app-subtitle">Track your day, achieve your goals</p>
+        </div>
+      </div>
+      <div class="progress-pill" id="progress-pill">
+        <span id="progress-text">0/0 completed</span>
+      </div>
+    </header>
+
+    <!-- Main Card Container -->
+    <main class="card main-card">
+      <!-- Task Creation Form -->
+      <form id="task-form" class="task-form" autocomplete="off">
+        <div class="input-group">
+          <input 
+            type="text" 
+            id="task-input" 
+            class="task-input" 
+            placeholder="What do you need to do today?" 
+            maxlength="150"
+            required
+          />
+          <button type="submit" id="add-btn" class="btn btn-primary" aria-label="Add Task">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Add</span>
+          </button>
+        </div>
+        <div id="form-error" class="form-error" aria-live="polite"></div>
+      </form>
+
+      <!-- Filter Tabs -->
+      <nav class="filter-tabs" aria-label="Filter tasks">
+        <button type="button" class="tab-btn active" data-filter="all">
+          All <span class="badge" id="count-all">0</span>
+        </button>
+        <button type="button" class="tab-btn" data-filter="pending">
+          Pending <span class="badge" id="count-pending">0</span>
+        </button>
+        <button type="button" class="tab-btn" data-filter="completed">
+          Completed <span class="badge" id="count-completed">0</span>
+        </button>
+      </nav>
+
+      <!-- Task List Area -->
+      <ul id="task-list" class="task-list" aria-label="Tasks list">
+        <!-- Tasks will be injected dynamically by script.js -->
+      </ul>
+
+      <!-- Empty State View -->
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 12h8"></path>
+          </svg>
+        </div>
+        <h2 class="empty-title">No tasks found</h2>
+        <p class="empty-desc">Type a task above and press "Add" or hit Enter!</p>
+      </div>
+
+      <!-- App Footer / Actions -->
+      <footer class="app-footer">
+        <span id="remaining-count">0 tasks remaining</span>
+        <button type="button" id="clear-completed-btn" class="btn-text">
+          Clear Completed
+        </button>
+      </footer>
+    </main>
+
+    <footer class="site-credit">
+      <p>Built with pure HTML, CSS &amp; JavaScript</p>
+    </footer>
+  </div>
+
+  <!-- JavaScript file -->
+  <script src="script.js" defer></script>
+</body>
+</html>
